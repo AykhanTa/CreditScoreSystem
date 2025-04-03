@@ -20,16 +20,16 @@ public class CreditInquiriesServiceImpl implements CreditInquiriesService {
 
     @Override
     public void applyCredit(int customerId, int categoryId) {
-        var creditScore=calculateCreditScore(customerId);
+        var creditScore = calculateCreditScore(customerId);
         CreditInquiries creditInquiry = new CreditInquiries();
         creditInquiry.setCategory(categoryRepository.findById(categoryId).get());
         creditInquiry.setCustomer(customerRepository.findById(customerId).get());
-        if (creditScore>=600&&creditScore<=800) {
+        if (creditScore >= 600 && creditScore <= 850) {
             creditInquiry.setApproved(true);
+        } else {
+            creditInquiry.setApproved(false);
         }
-        creditInquiry.setApproved(false);
         creditInquiries.save(creditInquiry);
-
     }
 
     @Override
@@ -51,21 +51,21 @@ public class CreditInquiriesServiceImpl implements CreditInquiriesService {
     public Integer calculateCreditScore(int customerId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
-        var incomeFactor=(customer.getIncome()/2000)*50;
-        var limitFactor=(1-customer.getUsedLimit()/customer.getCreditLimit())*100;
-        var latePaymentFactor=-(customer.getCustomerPayments()
+        var incomeFactor = (customer.getIncome() / 2000) * 50;
+        var limitFactor = (1 - customer.getUsedLimit() / customer.getCreditLimit()) * 100;
+        var latePaymentFactor = -(customer.getCustomerPayments()
                 .stream()
                 .mapToInt(CustomerPayments::getLatePaymentDay)
-                .sum()*2);
-        var inquiryFactor=-(customer.getCustomerPayments()
+                .sum() * 2);
+        var inquiryFactor = -(customer.getCustomerPayments()
                 .stream()
                 .mapToInt(CustomerPayments::getLatePaymentDay)
-                .sum()*10);
-        var ageFactor=(customer.getAge()/100)*50;
-        var creditScore=850+incomeFactor+limitFactor+inquiryFactor+latePaymentFactor+ageFactor;
-        customer.setCreditScore((int)creditScore);
+                .sum() * 10);
+        var ageFactor = (customer.getAge() / 100) * 50;
+        var creditScore = 850 + incomeFactor + limitFactor + inquiryFactor + latePaymentFactor + ageFactor;
+        customer.setCreditScore((int) creditScore);
         customerRepository.save(customer);
-        return (int)creditScore;
+        return (int) creditScore;
     }
 
 
