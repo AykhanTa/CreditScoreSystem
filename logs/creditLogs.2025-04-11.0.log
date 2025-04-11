@@ -1,0 +1,10 @@
+2025-04-11 11:32:18 [http-nio-8080-exec-2] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Applying new credit query: 2
+2025-04-11 11:32:18 [http-nio-8080-exec-2] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Credit query added with ID: 8
+2025-04-11 11:32:41 [http-nio-8080-exec-3] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Fetching credit score for customer ID: 2
+2025-04-11 11:32:41 [http-nio-8080-exec-3] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Found 582 credit score
+2025-04-11 11:33:33 [http-nio-8080-exec-4] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Updating customer's credit score with ID: 2
+2025-04-11 11:33:33 [http-nio-8080-exec-4] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Customer's credit score with ID 2 updated successfully
+2025-04-11 11:33:33 [http-nio-8080-exec-4] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Fetching credit score for customer ID: 2
+2025-04-11 11:33:33 [http-nio-8080-exec-4] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Found 720 credit score
+2025-04-11 11:33:37 [http-nio-8080-exec-5] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Fetching credit score for customer ID: 2
+2025-04-11 11:33:37 [http-nio-8080-exec-5] INFO  c.e.C.s.i.CreditInquiriesServiceImpl - Found 720 credit score
